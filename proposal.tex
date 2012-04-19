@@ -96,9 +96,9 @@ Phyicist and Life Sciences Division
 
 The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  Parallel visualization tools (such as VisIt) produce outstanding graphics, but tools for directly manipulating large datasets \emph{interactively} do not exist.  This hinders analysing the output of LLNL's many massively parallel physics codes.
 
-Therefore, we propose the development of an interactive computing platform to meet this need.  The platform will feature a distributed n-dimensional array, capable of loading too-large-for-serial meshes and having a high level interface that hides the details of how the array is physically distributed.  The platform will feature a comfortable interactive shell, familiar to Yorick or Mathematica.  Finally, the platform well leverage the high quality visualization tool VisIt for graphics.
+Therefore, we propose the development of an interactive computing platform to meet this need.  The platform will feature a distributed n-dimensional array, capable of loading too-large-for-serial meshes and having a high level interface that hides the details of how the array is physically distributed.  The platform will feature a comfortable interactive shell, familiar to Yorick or Mathematica users.  Finally, the platform well leverage the high quality visualization tool VisIt for graphics.
 
-The plaform builds on the vibrant Python scientific computing ecosystem, particularly the Numpy\cite{numpysciyp}, Scipy, IPython\cite{ipython} and VisIt\cite{visit} projects.
+The platform will initially target data generated from the HYDRA\cite{Marinak2001} radiation-hydrodynamics code, but nearly all of the infrastructure will be directly useful for any structured mesh (Hydra, ), AMR (Warp\cite{Grote2005}, Flash\cite{flash}, ALE-AMR\cite{Koniges2010},), and unstructured mesh () codes.  The plaform builds on the vibrant Python scientific computing ecosystem, particularly the Numpy\cite{Oliphant2006}, Scipy\cite{numpyscipy}, IPython\cite{ipython} and VisIt\cite{VisIt} projects.
 
 %___________________________________________________________________________
 
