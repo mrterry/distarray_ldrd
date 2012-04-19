@@ -120,7 +120,14 @@ Researchers are forced into very inefficient workflows due to the limitations of
 %___________________________________________________________________________
 
 \section*{Significance and Potential Impact}
-This could go big!
+The significance of this proposal is in its integration of existing ideas into a coherent whole.  Distributed arrays, rich interactive interpreters and parallel visualization are not novel concepts, but getting them to interact as a coherent whole is.
+
+There are three key components of this proposal: a Python wrapped distributed array, integration of this distributed array with IPython, and establishing a mechanism to expose distributed array data to VisIt.  The Numpy n-dimensional array is the bedrock on which the Python scientific computing stands.  It provides a powerful and flexible high level (Python) interface, as well as a C-API that allows it to easily interface with pre-existing code bases (LAPACK, etc).  The distributed array aims to be for parallel datasets, what the Numpy \texttt{ndarray} is for serial datasets.
+
+Finally, augmenting the already powerful VisIt with a mechanism to directly manipulate the data would represent a large jump in visualization capability.
+
+While we are developing these technologies in the context of post-processing Hydra output, they will applicability to most problems using distributed arrays.
+
 
 \section*{Plan of Work, Schedule and Budget}
 
