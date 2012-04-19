@@ -112,9 +112,13 @@ We are proposing the development of a distributed array for Python that follows 
 
 Having developed a scripting language accessible distributed array, we can begin to address the problem that inspired this proposal: post-processing the output of large simulations is more difficult than it ought.  The first component of this is that our distributed array must have an interface that hides the details of the array distribution and communication.  Additionally, we would like the an interactive shell that provides variable name completion, history and the other creature comforts that one expects from an interactive shell.  For this the project will use the well regarded IPython.  IPython's new notebook\cite{ipython-notebook}.
 
-Use Scalapack
+% common data structures/algorithms should have a shared implementation.  Power in shared abstractions
 
-Researchers are forced into very inefficient workflows due to the limitations of their tools.  Consider the case of examining the output of a simulation where the mesh does not fit into memory.  The scientist has two options: decimate the data such that it will fit into memory or use a parallel visualization tool
+% Applications drive the infrastructure.
+
+% interactive computing has looser performance requirements, but don't preclude high performance
+
+% existing work: Global Arrays, Petc and Trillinos
 
 
 %___________________________________________________________________________
@@ -127,6 +131,8 @@ There are three key components of this proposal: a Python wrapped distributed ar
 Finally, augmenting the already powerful VisIt with a mechanism to directly manipulate the data would represent a large jump in visualization capability.
 
 While we are developing these technologies in the context of post-processing Hydra output, they will applicability to most problems using distributed arrays.
+
+% Anthony/Flash as proof of wide applicability and seed for broader community
 
 
 \section*{Plan of Work, Schedule and Budget}
