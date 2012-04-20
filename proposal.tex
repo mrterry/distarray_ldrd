@@ -100,35 +100,50 @@ The critical areas of research are identifying exactly how general the array dis
 
 \section*{Technical Description}
 
-The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  It is a memory contiguous sequence of data of uniform type.  It has the convenient property of resembling both the a linear algebra vector/matrix/tensor as well as a being computationally performant data structure.  Due to its ubiquity, there are several high level languages that have language support (MatLab\cite{matlab}, Yorick\cite{Munro1995}), or widely used libraries (Python\cite{CPython} via Numpy\cite{Oliphant2006}) for manipulating nd-arrays.  One could make a very good argument that the long term popular of Fortran for scientific computing is due to its excellent support for nd-arrays.  These languages are useful across many scientific domains because they leverage the mutual abstraction of the nd-array.
+The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  It is a memory-contiguous sequence of data of uniform type.  It has the convenient property of resembling both a linear algebra vector/matrix/tensor as well as a being computationally performant data structure.  Due to its ubiquity, there are many high level programming languages that have language-level support (MatLab\cite{matlab}, Yorick\cite{Munro1995}), or widely used libraries (Python\cite{CPython} via Numpy\cite{Oliphant2006}) for manipulating nd-arrays.  One could make a very good argument that the long term popular of Fortran for scientific computing is due to its excellent support for nd-arrays.  These languages are useful across many scientific domains because they leverage the mutual abstraction of the nd-array.
 
-Programs written for distributed memory computers still leverage the nd-array, but scatter the array memory across many machines (``distributed array'').  This allows for arrays with memory requirements larger than the capacity of a single machine and divides the computational work among many processors.  Rather than having a single process be responsible for a single contiguous block of memory on a single machine, distributed arrays divide the array into pieces and locate only a few segments on each machine.  While the distributed array data structure is very common, there is not a standard implementation.  The lack of a standard implementation forces each project to implement their own distributed array which is likely incompatible with other projects implementation.  This inhibits code and tool reuse and slows the development of scientific software.
+Programs written for distributed memory computers still leverage the nd-array, but scatter the array memory across many machines (``distributed array'').  This allows for arrays with memory requirements larger than the capacity of a single machine and divides the computational work among many processors.  While the distributed array data structure is very common, there is not a standard implementation or direct language support.  The lack of a standard implementation forces each project to implement their own distributed array which is likely incompatible with other projects implementation.  This inhibits code and tool reuse and slows the evolution of scientific software.
 
-We are proposing the development of a distributed array for Python that follows Numpy's tradition of adaptability.  Like Numpy's \texttt{ndarray}, our distributed arary should work equally well if it operates on memory it allocates or wraps an application's pre-existing memory.  This means that our distributed array must have a flexible representation of the distribution scheme.  Particularly, it should support the two most common distribution schems: block structured (used for domain decomposition) and block cyclic (used in parallel linear algebra libraries such as ScaLAPACK\cite{scalapack}).  Distributed arrays of differeing distributions must be able to interact and there should be funcionality for converting between different distribution schemes.  It is reasonable to expect the performance to vary with distribution schemes, but we believe it to be more important to broadly useful than force users to conform to a particular distribution scheme.  General purpose algorthms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
+In particular, the non-existence of a standard distributed array means that interpret languages have not wrapped it and thus processing large datasets is largely confined to special purpose programs.
 
-Having developed a scripting language accessible distributed array, we can begin to address the problem that inspired this proposal: post-processing the output of large simulations is more difficult than it ought.  The first component of this is that our distributed array must have an interface that hides the details of the array distribution and communication.  Additionally, we would like the an interactive shell that provides variable name completion, history and the other creature comforts that one expects from an interactive shell.  For this the project will use the well regarded IPython.  IPython's new notebook\cite{ipython-notebook}.
+We are proposing the development of a distributed array for Python that follows Numpy's tradition of interoperability and adaptability.  Like Numpy's \texttt{ndarray}, our distributed array will be able wrap pre-existing data structures and provide an alternate interface without copying or substantially modifying the original program.  The distributed array will work with HDF5\cite{HDF5} and SILO data files.  Likewise, it will be able to allocate and manage its own memory.  This flexibility requires a flexible representation of the how the array is distributed in memory.  Particularly, it should support the two most common distribution schemes: block structured (used for domain decomposition) and block cyclic (used in parallel linear algebra libraries such as ScaLAPACK\cite{scalapack}).  Distributed arrays of differing distributions must be able to interact and there should be functionality for converting between different distribution schemes.  It is reasonable to expect the performance to vary with distribution schemes, but it will be an area of research to establish exactly how general a distributed array we can represent while maintaining acceptable performance.
+%  General purpose algorthms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
+
+To out knowledge, there are two projects that approach the functionality we desire: petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}) and GAIN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  The main objection to both is that they are opinionated projects and insist that your program use the memory they allocate.  This makes them very difficult to adapt to pre-existing projects.  Additionally, the petsc4py API is very verbose and not appropriate for interactive use.
+
+Having developed a scripting language accessible distributed array, we can begin to address the problem that inspired this proposal: post-processing the output of large simulations is more difficult than it ought.  
+  
+The first component of this is that our distributed array must have an interface that hides the details of the array distribution and communication.  Additionally, we would like an interactive shell that provides variable name completion, history and the other creature comforts that one expects from an interactive shell.  For this the project will build on the well regarded IPython project.
+
+Finally, this data analysis platform must be capable of visualizing the data it processes.  For this, we will rely on the very capable VisIt project.  VisIt is use across many domains
 
 % common data structures/algorithms should have a shared implementation.  Power in shared abstractions
 
-% Applications drive the infrastructure.
-
 % interactive computing has looser performance requirements, but don't preclude high performance
 
-% existing work: Global Arrays, Petc and Trillinos
+% flyweight pattern
 
+% However, existing technologies for loading and manipulating data are serial only.  Most are even more restrictive in that they require the data to be (strided) memory contiguous.  This significantly constrains the size of the simulation that can be considered.  Rather than using a serial scripted language, one can explore her data with a parallel visualisation tool such as VisIt\cite{VisIt} or ParaView\cite{paraview}.  While these tools can graphically represent very large data sources, they do not offer direct access to the data arrays.  Directly manipulating data is extremely important in research.
 
 %___________________________________________________________________________
 
 \section*{Significance and Potential Impact}
+
+% integrate somewhere
+Because scripting languages lack a distributed nd-array, users must manually extract the ``interesting'' data from a large dataset.  This extraction manifests itself as a serial script that slowly plows through large numbers of binary files, selecting the important data and copying that to a second, smaller binary file.  The decimated data fits in memory and the scientist can use her familiar tools, but this decimation often takes hours, and must be repeated if the initial selection does not contain the desired information.  One of the goals of this proposal is to drastically reduce the friction preventing the scientist from getting work done.
+
+
 The significance of this proposal is in its integration of existing ideas into a coherent whole.  Distributed arrays, rich interactive interpreters and parallel visualization are not novel concepts, but getting them to interact as a coherent whole is.
 
 There are three key components of this proposal: a Python wrapped distributed array, integration of this distributed array with IPython, and establishing a mechanism to expose distributed array data to VisIt.  The Numpy n-dimensional array is the bedrock on which the Python scientific computing stands.  It provides a powerful and flexible high level (Python) interface, as well as a C-API that allows it to easily interface with pre-existing code bases (LAPACK, etc).  The distributed array aims to be for parallel datasets, what the Numpy \texttt{ndarray} is for serial datasets.
 
 Finally, augmenting the already powerful VisIt with a mechanism to directly manipulate the data would represent a large jump in visualization capability.
 
-While we are developing these technologies in the context of post-processing Hydra output, they will applicability to most problems using distributed arrays.
+While we are developing these technologies in the context of post-processing HYDRA output, they will applicability to most problems using distributed arrays.
 
-% Anthony/Flash as proof of wide applicability and seed for broader community
+% Anthony/FLASH as proof of wide applicability and seed for broader community
+
+% imagination, genomic datasets, lazy evaluation, fancy high level linear algebra
 
 
 \section*{Plan of Work, Schedule and Budget}
@@ -136,15 +151,26 @@ While we are developing these technologies in the context of post-processing Hyd
 We propose the following tasks over a two year program:
 
 \begin{enumerate}
-	\item Development of a distributed n-dimensional array (Terry, Grote, Scopatz)
+	\item Develop a general purpose n-dimensional array and furnish with basic data re-distribution routines.  Establish performance boundaries and array distribution limitations. (Terry, Grote, Scopatz, 0.75 FTE) 
 
-	\item Python Bindings and integration within IPython
+	\item Python Bindings and integration within IPython (Terry, Grote 0.50 FTE)
 
-	\item Integration with HYDRA's output files
+	\item Integration with HYDRA's output files (Terry xx FTE)
 
-	\item Extensions to VisIt expose our distributed arrays and enable parallel visualization with VisIt.
+	\item Extensions to VisIt expose our distributed arrays and enable parallel visualization with VisIt. (Terry, Grote xxx FTE)
+
 \end{enumerate}
 
+\begin{itemize}
+	\setlength{\itemsep}{0pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+
+	\item Funded effort = 300k
+	\item Collaboration (unfunded) =
+	\item FY2013 request =  300k
+	\item FY2014 request =  300k
+\end{itemize}
 
 \section*{Desired Outcome, Leverage and Exit Strategy}
 
