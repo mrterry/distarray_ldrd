@@ -134,19 +134,13 @@ Finally, this data analysis platform must be capable of visualizing the data it 
 
 \section*{Significance and Potential Impact}
 
-% integrate somewhere
-Because scripting languages lack a distributed nd-array, users must manually extract the ``interesting'' data from a large dataset.  This extraction manifests itself as a serial script that slowly plows through large numbers of binary files, selecting the important data and copying that to a second, smaller binary file.  The decimated data fits in memory and the scientist can use her familiar tools, but this decimation often takes hours, and must be repeated if the initial selection does not contain the desired information.  One of the goals of this proposal is to drastically reduce the friction preventing the scientist from getting work done.
-
-
-The significance of this proposal is in its integration of existing ideas into a coherent whole.  Distributed arrays, rich interactive interpreters and parallel visualization are not novel concepts, but getting them to interact as a coherent whole is.
+Because scripting languages lack a distributed nd-array, users must manually extract the ``interesting'' data from a large dataset.  This extraction manifests itself as a serial script that slowly plows through large numbers of binary files, selecting the important data and copying that to a second, smaller binary file.  The decimated data fits in memory and the scientist can use her familiar tools, but this decimation often takes hours, and must be repeated if the initial selection does not contain the desired information.  The significance of this proposal is that it would remove much of the friction associated with working with large datasets.  Though the individual components of the proposal (distributed arrays, rich interactive interpreters and parallel visualization) are not novel concepts coherently integrating them is and would represent a large step in capabilities.
 
 There are three key components of this proposal: a Python wrapped distributed array, integration of this distributed array with IPython, and establishing a mechanism to expose distributed array data to VisIt.  The Numpy n-dimensional array is the bedrock on which the Python scientific computing stands.  It provides a powerful and flexible high level (Python) interface, as well as a C-API that allows it to easily interface with pre-existing code bases (LAPACK, etc).  The distributed array aims to be for parallel datasets, what the Numpy \texttt{ndarray} is for serial datasets.
 
-Finally, augmenting the already powerful VisIt with a mechanism to directly manipulate the data would represent a large jump in visualization capability.
+Finally, augmenting the already powerful VisIt with a mechanism to directly manipulate the data would represent a large jump in visualization capability.  VisIt users would be able to invent quantities to visualize without the intermediate step of putting it in a binary file or relying on VisIt to anticipate a particular transformation.
 
-While we are developing these technologies in the context of post-processing HYDRA output, they will applicability to most problems using distributed arrays.
-
-% Anthony/FLASH as proof of wide applicability and seed for broader community
+While we are developing these technologies in the context of post-processing HYDRA output, they will applicability to most problems using distributed arrays.  Explicitly, the platform would be very easily adapted for using the laboratory's large design codes.
 
 % imagination, genomic datasets, lazy evaluation, fancy high level linear algebra
 
