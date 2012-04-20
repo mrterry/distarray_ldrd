@@ -84,7 +84,7 @@ Phyicist and Life Sciences Division
 
 \setlength{\parindent}{15pt}
 \section*{Executive Summary }
-We propose the development of an interactive computing platform capable of processing memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  Parallel visualization tools (such as VisIt) produce outstanding graphics, but tools for directly manipulating large datasets \emph{interactively} do not exist.  This lack of tooling restricts both the scope and the pace of research operating on large datasets.  Therefore, we propose the development of the following:
+We propose the development of an interactive computing platform capable of processing memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  There are specialized tools for visualizing large datasets (such as VisIt\cite{VisIt}), but these do not solve the problem of needing to directly manipulate large datasets \emph{interactively}.  The inability to interactively manipulate large datasets restricts both the scope and the pace of research, particularly at LLNL where large scale simulation is common.  Therefore, we propose the development of a platform with the following capabilities:
 
 \begin{enumerate}
 	\item A distributed n-dimensional array, capable of loading too-large-for-serial meshes and having a high level interface that hides the details of how the array is physically distributed.
@@ -94,7 +94,7 @@ We propose the development of an interactive computing platform capable of proce
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
 \end{enumerate}
 
-The critical areas of research are identifying exactly how general the array distribution can be while maintaining acceptable performances and identifying how many details of the array distribution to require the user to specify.  The initiall application of this platform will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics code, but nearly all of the infrastructure will be directly useful for any structured mesh (HYDRA), AMR (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and unstructured mesh codes.  The plaform builds on the vibrant Python scientific computing ecosystem, particularly the Numpy\cite{Oliphant2006}, Scipy\cite{numpyscipy}, IPython\cite{ipython} and VisIt\cite{VisIt} projects.
+The critical areas of research are identifying exactly how general the array distribution can be while maintaining acceptable performances and identifying how many details of the array distribution to require the user to specify.  The initial application of this platform will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics code, but nearly all of the infrastructure will be directly useful for any structured mesh (HYDRA), AMR (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and unstructured mesh codes.  The platform builds on the vibrant Python scientific computing ecosystem, particularly the Numpy\cite{Oliphant2006}, Scipy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
 
 %___________________________________________________________________________
 
