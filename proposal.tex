@@ -62,8 +62,8 @@ Physicist and Life Sciences Division
 	\columnbreak
 			
 	Anthony Scopatz \\
-	Flash Center \\
-	University of Chicago \\
+	The FLASH Center \\
+	The University of Chicago \\
 \end{multicols}
 
 %\textbf{Collaborators:}
@@ -92,14 +92,24 @@ Physicist and Life Sciences Division
 We propose the development of an interactive computing platform capable of processing memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  There are specialized tools for visualizing large datasets (such as VisIt\cite{VisIt}), but these do not solve the problem of needing to directly manipulate large datasets \emph{interactively}.  The inability to interactively manipulate large datasets restricts both the scope and the pace of research, particularly at LLNL where large scale simulation is common.  Therefore, we propose the development of a platform with the following capabilities:
 
 \begin{enumerate}
-	\item A distributed n-dimensional array, capable of loading too-large-for-serial meshes and having a high level interface that hides the details of how the array is physically distributed.
+	\item A distributed n-dimensional array, capable of loading too-large-for-serial meshes 
+          and having a high-level interface which automatially handles how 
+          the array is physically distributed.
 
 	\item A comfortable interactive shell, familiar to Yorick or Mathematica users.
 
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
 \end{enumerate}
 
-The critical areas of research are identifying exactly how general the array distribution can be while maintaining acceptable performances and identifying how many details of the array distribution to require the user to specify.  The initial application of this platform will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics code, but nearly all of the infrastructure will be directly useful for any structured mesh (HYDRA), AMR (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and unstructured mesh codes.  The platform builds on the vibrant Python scientific computing ecosystem, particularly the NumPy\cite{Oliphant2006}, Scipy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
+The critical areas of research are identifying how general the array distribution can be 
+while maintaining acceptable performance and identifying how many details of the array 
+distribution to require the user to specify.  The initial application of this platform 
+will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics 
+code, but nearly all of the infrastructure will be directly useful for any structured mesh 
+(HYDRA), AMR (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and 
+unstructured mesh codes.  The platform builds on the vibrant Python scientific computing 
+ecosystem, particularly the NumPy\cite{Oliphant2006}, SciPy\cite{numpyscipy}, 
+IPython\cite{ipython} and VisIt projects.
 
 %___________________________________________________________________________
 
@@ -245,11 +255,26 @@ We propose the following tasks over a two year program:
 
 \section*{Desired Outcome, Leverage and Exit Strategy}
 
-Since its founding, LLNL has been a leader in the development and application of high performance computational systems working on large problems.  This project would extend capability to working \emph{interactively} with such systems.  Studies have shown productivity improvements of at least a factor of two\cite{Prechelt2000} in using interpreted languages over compiled ones.  This project would position LLNL to reap those productivity gains even while simulations datasets outgrow serial processing.
+Since its founding, LLNL has been a leader in the development and application of high 
+performance computational systems working on large problems.  This project would extend 
+capability to working \emph{interactively} with such systems.  Studies have shown productivity 
+improvements of at least a factor of two\cite{Prechelt2000} in using interpreted languages 
+over compiled ones.  This project would position LLNL to reap those productivity gains even 
+while simulations datasets outgrow serial processing.
 
-The objective of the project is to develop broadly useful infrastructure for manipulating distributed arrays in Python.  The project will leverage LLNL's extensive experience in parallel computation (Grote, Koning) as well as its prominance in the parallel visualization community (Harrison).  Additionally, the project's external collaborators are leaders in their communities, Scopatz as a lead developer of the Pytables project and Oliphant as the creator of NumPy and Scipy.
+The objective of the project is to develop broadly useful infrastructure for manipulating 
+distributed arrays in Python.  The project will leverage LLNL's extensive experience in 
+parallel computation (Grote, Koning) as well as its prominance in the parallel visualization 
+community (Harrison).  Additionally, the project's external collaborators are leaders in their 
+communities, Scopatz as a lead developer of the PyTables project and Oliphant as the creator of 
+NumPy and SciPy.
 
-We envision the the distributed array component attracting interest from a broad community of potential users and contributors.  This proposal alone has interested parties representing two LLNL developed codes (HYDRA and Warp) and an academically developed astro-physics code (FLASH).  After two years, We expect this project to be sufficiently mature and have sufficient outside interest to turn development and maintenance over to a community developed project in the mold of NumPy and Scipy.
+We envision the distributed array component attracting interest from a broad community 
+of potential users and contributors.  This proposal alone has interested parties 
+representing two LLNL developed codes (HYDRA and Warp) and an academically developed 
+astrophysics \& high-energy density physics code (FLASH).  After two years, we expect this 
+project to be sufficiently mature and have sufficient outside interest to turn development 
+and maintenance over to a community governance team in the model of NumPy, Scipy, and IPython.
 
 %___________________________________________________________________________
 
