@@ -90,14 +90,14 @@ Physics and Life Sciences Division
 
 \setlength{\parindent}{15pt}
 \section*{Executive Summary }
-We propose the development of an interactive computing platform capable of processing memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  There are specialized tools for visualizing large datasets (such as VisIt\cite{VisIt}), but these do not solve the problem of needing to directly manipulate large datasets \emph{interactively}.  The inability to interactively manipulate large datasets restricts both the scope and the pace of research, particularly at LLNL where large scale simulation is common.  Therefore, we propose the development of a platform with the following capabilities:
+We propose the research and development of an interactive computing platform capable of processing massively-parallel memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  There are specialized tools for visualizing large datasets (such as VisIt\cite{VisIt}), but these do not solve the problem of needing to directly manipulate large datasets \emph{interactively}.  The inability to interactively manipulate large datasets restricts both the scope and the pace of research, particularly at LLNL where large scale simulation is common.  Therefore, we propose the development of a platform with the following capabilities:
 
 \begin{enumerate}
 	\item A distributed n-dimensional array, capable of loading too-large-for-serial meshes 
           and having a high-level interface which automatically handles how 
           the array is physically distributed.
 
-	\item A comfortable interactive shell, familiar to Yorick or Mathematica users.
+	\item A powerful, modern interactive shell with name completion, syntax highlighting, descriptive error messages, etc.  It will familiar to users of Mathematica, MatLab, Yorick, Basis, etc.
 
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
 \end{enumerate}
@@ -106,9 +106,10 @@ The critical areas of research are identifying how general the array distributio
 while maintaining acceptable performance and identifying how many details of the array 
 distribution to require the user to specify.  The initial application of this platform 
 will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics 
-code, but nearly all of the infrastructure will be directly useful for any structured mesh 
-(HYDRA), AMR (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and 
-unstructured mesh codes.  The platform builds on the vibrant Python scientific computing 
+code, but all of the infrastructure will be directly useful for of LLNL's structured mesh 
+(HYDRA, LASNEX\cite{needed} % ARES?
+), automatic mesh refinement (Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}), and 
+unstructured mesh codes (KULL\cite{needed}).  The platform builds on the vibrant Python scientific computing 
 ecosystem, particularly the NumPy\cite{Oliphant2006}, SciPy\cite{numpyscipy}, 
 IPython\cite{ipython} and VisIt projects.
 
@@ -118,8 +119,7 @@ IPython\cite{ipython} and VisIt projects.
 
 The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  
 It is a memory-contiguous sequence of data of uniform type.  It has the convenient property 
-of resembling both a linear algebra vector/matrix/tensor as well as a being computationally 
-performant data structure.  Due to its ubiquity, there are many high level programming 
+of resembling both a linear algebra vector/matrix/tensor as well as a being a data structure with good performance.  Due to its ubiquity, there are many high level programming 
 languages that have language-level support (MatLab\cite{matlab}, Yorick\cite{Munro1995}), 
 or widely used libraries (Python\cite{CPython} via NumPy\cite{Oliphant2006}) for 
 manipulating nd-arrays.  The long-term popularity of Fortran for scientific computing is 
@@ -132,9 +132,9 @@ with memory requirements larger than the capacity of a single machine \emph{and}
 the computational work among many processors.  While the distributed array data structure 
 is very common, there is neither a standard implementation nor direct language support.  
 The lack of a standard abstraction forces each project to write their own data structure 
-which are often incompatible with other implementations.  This inhibits code and tool 
-reuse and slows the evolution of scientific software.
+which are often incompatible with other implementations.  This significantly inhibits code and tool reuse and slows the evolution of scientific software.
 
+% TODO what does it mean to wrap? for non-comp folks
 In particular, the lack of a standard distributed array means that very high-level 
 languages have not wrapped such an object in a dynamic interface.  Thus, processing large 
 datasets is largely confined to special purpose software which is not available to all 
@@ -161,7 +161,8 @@ petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}
 and GAIN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  
 The main objection to both is that they each and insist that the program use the 
 memory which they allocate.  This provides a large barrier to entry for pre-existing 
-projects.  Additionally, the petsc4py API is deemed too verbose for interactive use.
+projects.  Additionally, the petsc4py interface is deemed too verbose for interactive use.
+% Target LLNL advanced sim codes
 
 Having developed a distributed array which is accessible from both low and high-level 
 languages we can address the processing of large data sets.  In particular, we seek 
@@ -175,6 +176,8 @@ sophisticated many-to-many parallel compute architecture.  Finally, this data an
 platform must be capable of visualization.  Here, we will integrate with LLNL's own VisIt 
 project \cite{needed}.  VisIt is used across many domains for dynamic, distributed, 
 high-performance visualization.
+
+% TODO: flow chart here
 
 % common data structures/algorithms should have a shared implementation.  Power in shared abstractions
 
@@ -223,9 +226,13 @@ While we are developing these technologies in the context of post-processing HYD
 they will apply to most problems where a distributed array is the correct abstraction.  
 For example, this platform would be very easily adapted for use with the laboratory's large 
 design codes.
+% TODO: why will doing this for HYDRA be a significant benefit for NIF and ignition
 
 % imagination, genomic datasets, lazy evaluation, fancy high level linear algebra
 
+% TODO management
+% TODO external sponsors
+% TODO dissemination
 
 \section*{Plan of Work, Schedule and Budget}
 
