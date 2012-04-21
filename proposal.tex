@@ -40,7 +40,7 @@
 \large
 Laboratory Directed Research and Development \\
 Lawrence Livermore National Laboratory \\
-Law Wide - New proposal
+Lab Wide - New proposal
 
 \normalsize
 \begin{multicols}{2}
@@ -50,7 +50,7 @@ Law Wide - New proposal
 Matthew R. Terry \\
 Physicist, Fusion Energy Program \\
 Heavy Ion Fusion Virtual National Laboratory \\
-Physicist and Life Sciences Division
+Physics and Life Sciences Division
 
 \end{multicols}
 
@@ -94,7 +94,7 @@ We propose the development of an interactive computing platform capable of proce
 
 \begin{enumerate}
 	\item A distributed n-dimensional array, capable of loading too-large-for-serial meshes 
-          and having a high-level interface which automatially handles how 
+          and having a high-level interface which automatically handles how 
           the array is physically distributed.
 
 	\item A comfortable interactive shell, familiar to Yorick or Mathematica users.
@@ -154,7 +154,7 @@ able to interact and there should be functionality for converting between differ
 distribution schemes.  It is reasonable to expect the performance to vary with distribution 
 schemes.  It will be an area of research to establish the generality of distribution 
 schemas we may support while maintaining acceptable performance.
-%  General purpose algorthms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
+%  General purpose algorithms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
 
 To date, there are two projects that approach in part the functionality we desire: 
 petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}) 
@@ -194,25 +194,25 @@ as a serial script that slowly plows through large numbers of binary files, sele
 important data out, and copies it to a second, smaller file.  The final decimated data fits 
 in memory and the scientist may then use familiar tools.   However this decimation often takes 
 hours (or days) and must be repeated if the initial selection does not contain the desired 
-information.  Such repreated decimation is a gross waste of time and materials when considering 
-the large number of scientisists who currently employ this data management design pattern and
-the lack of new fudemental knowledged gained from the practice.
+information.  Such repeated decimation is a gross waste of time and materials when considering 
+the large number of scientists who currently employ this data management design pattern and
+the lack of new fundamental knowledge gained from the practice.
 
 The significance of this proposal, therefore, is that it would remove much of the friction 
 associated with working with large datasets.  Though the individual components of the 
 proposal - distributed arrays, interactive interpreters, and parallel visualization - are 
 not novel concepts, coherently integrating them is.  This proposal represents a large 
 advance in the capabilities available to all scientists who must work with large data, 
-independent of their individual computational abilites.
+independent of their individual computational abilities.
 
 There are three main thrusts of this proposal: a Python-wrapped distributed array, integration 
-of this distributed array with parallel compute architechture of IPython, and fully exposing 
+of this distributed array with parallel compute architecture of IPython, and fully exposing 
 the distributed array data to VisIt.  
 
 The NumPy n-dimensional array is the bedrock on which the Python scientific computing stands.  
 It provides a powerful and flexible high level (Python) interface, as well as a C-API that 
 allows it to easily interface with pre-existing code bases (LAPACK, etc).  The distributed 
-array aims to be for parallel datasets what the Numpy \texttt{ndarray} is for serial datasets.
+array aims to be for parallel datasets what the NumPy \texttt{ndarray} is for serial datasets.
 
 Moreover, augmenting the already powerful VisIt with a mechanism to directly manipulate the 
 data would represent a large jump in visualization capability.  VisIt users would be able 
@@ -265,7 +265,7 @@ while simulations datasets outgrow serial processing.
 
 The objective of the project is to develop broadly useful infrastructure for manipulating 
 distributed arrays in Python.  The project will leverage LLNL's extensive experience in 
-parallel computation (Grote, Koning) as well as its prominance in the parallel visualization 
+parallel computation (Grote, Koning) as well as its prominence in the parallel visualization 
 community (Harrison).  Additionally, the project's external collaborators are leaders in their 
 communities, Scopatz as a lead developer of the PyTables project and Oliphant as the creator of 
 NumPy and SciPy.
@@ -275,7 +275,7 @@ of potential users and contributors.  This proposal alone has interested parties
 representing two LLNL developed codes (HYDRA and Warp) and an academically developed 
 astrophysics \& high-energy density physics code (FLASH).  After two years, we expect this 
 project to be sufficiently mature and have sufficient outside interest to turn development 
-and maintenance over to a community governance team in the model of NumPy, Scipy, and IPython.
+and maintenance over to a community governance team in the model of NumPy, SciPy, and IPython.
 
 %___________________________________________________________________________
 
