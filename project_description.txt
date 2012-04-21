@@ -1,0 +1,8 @@
+Project Description (max 800 characters)
+This section is an abstract of your project and should provide answers to the following questions, preferably in this order:
+
+    What is the project objective and scope?
+    What is the technical motivation for this project? Why is this work important?
+    What do you plan to accomplish?
+    How will you accomplish it?
+
