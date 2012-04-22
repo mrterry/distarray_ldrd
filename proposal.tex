@@ -87,9 +87,9 @@ Physics and Life Sciences Division
 %\end{multicols}
 
 
+\setlength{\parindent}{15pt}
 %___________________________________________________________________________
 
-\setlength{\parindent}{15pt}
 \section*{Executive Summary }
 We propose the research and development of an interactive computing platform capable of processing massively-parallel memory distributed arrays.  The advent of parallel computing devices has led to dramatic improvements in the scope and fidelity of computational science.  However, these advances have largely left interactive computing behind.  There are specialized tools for visualizing large datasets (such as VisIt\cite{VisIt}), but these do not solve the problem of needing to directly manipulate large datasets \emph{interactively}.  The inability to interactively manipulate large datasets restricts both the scope and the pace of research, particularly at LLNL where large scale simulation is common.  Therefore, we propose the development of a platform with the following capabilities:
 
@@ -98,7 +98,9 @@ We propose the research and development of an interactive computing platform cap
           and having a high-level interface which automatically handles how 
           the array is physically distributed.
 
-	\item A powerful, modern interactive shell with name completion, syntax highlighting, descriptive error messages, etc.  It will familiar to users of Mathematica, MatLab, Yorick, Basis, etc.
+	\item A powerful, modern interactive shell with name completion, syntax highlighting, 
+		descriptive error messages, etc.  It will familiar to users of Mathematica, 
+		MatLab, Yorick, Basis, etc.
 
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
 \end{enumerate}
@@ -120,7 +122,8 @@ IPython\cite{ipython} and VisIt projects.
 
 The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  
 It is a memory-contiguous sequence of data of uniform type.  It has the convenient property 
-of resembling both a linear algebra vector/matrix/tensor as well as a being a data structure with good performance.  Due to its ubiquity, there are many high level programming 
+of resembling both a linear algebra vector/matrix/tensor as well as a being a data structure
+with good performance.  Due to its ubiquity, there are many high level programming 
 languages that have language-level support (MatLab\cite{matlab}, Yorick\cite{Munro1995}), 
 or widely used libraries (Python\cite{CPython} via NumPy\cite{Oliphant2006}) for 
 manipulating nd-arrays.  The long-term popularity of Fortran for scientific computing is 
@@ -133,7 +136,8 @@ with memory requirements larger than the capacity of a single machine \emph{and}
 the computational work among many processors.  While the distributed array data structure 
 is very common, there is neither a standard implementation nor direct language support.  
 The lack of a standard abstraction forces each project to write their own data structure 
-which are often incompatible with other implementations.  This significantly inhibits code and tool reuse and slows the evolution of scientific software.
+which are often incompatible with other implementations.  This significantly inhibits code
+and tool reuse and slows the evolution of scientific software.
 
 % TODO what does it mean to wrap? for non-comp folks
 In particular, the lack of a standard distributed array means that very high-level 
@@ -235,18 +239,23 @@ design codes.
 % TODO external sponsors
 % TODO dissemination
 
+%___________________________________________________________________________
+
 \section*{Plan of Work, Schedule and Budget}
 
 We propose the following tasks over a two year program:
 
 \begin{enumerate}
-	\item Develop a general purpose n-dimensional array and furnish with basic data re-distribution routines.  Establish performance boundaries and array distribution limitations. (Terry, Grote, Scopatz, 0.75 FTE) 
+	\item Develop a general purpose n-dimensional array and furnish with basic data 
+		re-distribution routines.  Establish performance boundaries and array distribution 
+		limitations. (Terry, Grote, Scopatz, 0.75 FTE) 
 
 	\item Python Bindings and integration within IPython (Terry, Grote 0.50 FTE)
 
 	\item Integration with HYDRA's output files (Terry xx FTE)
 
-	\item Extensions to VisIt expose our distributed arrays and enable parallel visualization with VisIt. (Terry, Grote xxx FTE)
+	\item Extensions to VisIt expose our distributed arrays and enable parallel visualization 
+		with VisIt. (Terry, Grote xxx FTE)
 
 \end{enumerate}
 
@@ -261,6 +270,7 @@ We propose the following tasks over a two year program:
 	\item FY2014 request =  300k
 \end{itemize}
 
+%___________________________________________________________________________
 
 \section*{Desired Outcome, Leverage and Exit Strategy}
 
@@ -286,7 +296,6 @@ project to be sufficiently mature and have sufficient outside interest to turn d
 and maintenance over to a community governance team in the model of NumPy, SciPy, and IPython.
 
 %___________________________________________________________________________
-
 
 \section*{Research Team}
 
@@ -354,6 +363,8 @@ and maintenance over to a community governance team in the model of NumPy, SciPy
 \end{longtable*}
 
 \newpage
+%___________________________________________________________________________
+
 \bibliographystyle{plain}
 \bibliography{/users/terry10/doc/latex_files/terry}
 
