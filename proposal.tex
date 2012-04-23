@@ -203,8 +203,21 @@ high-performance visualization.
 
 \section*{Significance and Potential Impact}
 
+To appreciate the significance of this proposal, consider the quantity of data generate
+by HYDRA\@.  HYDRA is a massively parallel, 3 dimensional, radiation-hydrodynamics code, 
+whose the main application of is the simulation inertial confinement fusion
+experiments on the National Ignition Facility.  A large 3D HYDRA simulation can have
+	xx grid points, run on 
+	xx processors, consume 
+	xx TB of RAM and produce 
+	xx TB of binary data.  When examining the output of such a simulation, loading the
+just the computational mesh, at a single snapshot in time consumes
+	xx GB RAM\@.  For a sense of scale, Inca, which has the largest per-node RAM allocation 
+at Livermore Computing, has 48 GB\@.  Clearly, the output of our simulation codes has grown
+beyond our ability to load and manipulate on a single computer node.
+
 Because high-level languages lack a distributed nd-array, users must manually extract a subset
- of ``interesting'' data from a larger dataset.  This extraction process typically manifests 
+ of ``interesting'' data from a larger dataset that will fit in memory on a single node.  This extraction process typically manifests 
 as a serial script that slowly plows through large numbers of binary files, selects the 
 important data out, and copies it to a second, smaller file.  The final decimated data fits 
 in memory and the scientist may then use familiar tools.   However this decimation often takes 
@@ -234,11 +247,13 @@ data would represent a large jump in visualization capability.  VisIt users woul
 to invent quantities to visualize without the intermediate step of putting it in a binary 
 file or relying on VisIt to anticipate a particular transformation.
 
-While we are developing these technologies in the context of post-processing HYDRA output, 
+After 50 years of concerted effort, LLNL stands on the verge of demonstrating fusion
+ignition and energy gain on the NIF\@.  In this, HYDRA occupies a central role in designing NIF experiments and in interpreting the experimental data gathered.  It is important that 
+scientists have the tools to easily and efficiently understand the output of their
+simulations.  While we are developing these technologies in the context of post-processing HYDRA output, 
 they will apply to most problems where a distributed array is the correct abstraction.  
 For example, this platform would be very easily adapted for use with the laboratory's large 
 design codes.
-% TODO: why will doing this for HYDRA be a significant benefit for NIF and ignition
 
 % imagination, genomic datasets, lazy evaluation, fancy high level linear algebra
 
