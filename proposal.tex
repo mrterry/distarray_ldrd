@@ -213,9 +213,9 @@ To date, there are two projects that approach in part the functionality we desir
 petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}) 
 and GAIN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  
 The main objection to both is that they each and insist that the program use the 
-memory which they allocate.  This provides a large barrier to entry for pre-existing 
+memory which they allocate.  This requirement amounts to an ``all or nothing'' condition
+on using these libraries and is an unacceptably large barrier to entry for pre-existing 
 projects.  Additionally, the petsc4py interface is deemed too verbose for interactive use.
-% Target LLNL advanced sim codes
 
 \begin{wrapfigure}{l}{0.55\textwidth}
 	\vspace{-20pt}
