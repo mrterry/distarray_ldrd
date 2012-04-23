@@ -8,6 +8,7 @@
 \usepackage{fullpage}
 \usepackage{multicol}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 \newlength{\DUtablewidth} % internal use in tables
 
 %%% Custom LaTeX preamble
@@ -216,13 +217,16 @@ memory which they allocate.  This provides a large barrier to entry for pre-exis
 projects.  Additionally, the petsc4py interface is deemed too verbose for interactive use.
 % Target LLNL advanced sim codes
 
-\begin{figure}[<+htpb+>]
+\begin{wrapfigure}{l}{0.55\textwidth}
+	\vspace{-20pt}
 	\begin{center}
-		\includegraphics[height=3.5in]{communication.jpg}
+		\includegraphics[width=0.53\textwidth]{communication.jpg}
 	\end{center}
-	\caption{Communication diagram}
+	\caption{Communication diagram illustrating user interaction with the shell
+	controlling operations involving the distributed array and VisIt graphics.}
 	\label{fig:communication}
-\end{figure}
+	\vspace{-10pt}
+\end{wrapfigure}
 
 Having developed a distributed array which is accessible from both low and high-level 
 languages we can address the processing of large data sets.  In particular, we seek 
