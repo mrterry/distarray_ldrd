@@ -130,6 +130,44 @@ SciPy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
 
 \section*{Technical Description}
 
+After 50 years of concerted effort, LLNL stands on the verge of demonstrating inertial 
+confinement fusion (ICF) ignition and energy gain on the National Ignition Facility\@.
+ICF involves compressing a spherical shell cryogenic Deuterium and Tritium ice (Hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with a 
+velocity of 350 km/s, achieves densities greater than
+xx g/cm${}^3$ and temperatures in
+excess of 100,000,000 K.  The implosion is driven by high intensity laser beams heating 
+the inner surface of a Gold cylinder called a ``hohlraum.''  The hohlraum radiates x-rays 
+which impinge on the shell and drive the implosion.  Figure~\ref{hohlraum} give a schematic.  Simulating such experiments requires accurate modeling of
+hydrodynamics, (photon) sophisticated radiation transport, thermal conduction, equations 
+of state spanning from cryogenic to thermonuclear, laser propagation, fusion burn, and more.
+In this, HYDRA occupies a central role in designing NIF experiments and in interpreting the experimental data gathered.  HYDRA is massively parallel, code developed in AX Division
+capable of describing all the mentioned physical processes in 3 dimensions.
+
+\begin{wrapfigure}{r}{0.45\textwidth}
+	\vspace{-25pt}
+	\begin{center}
+		\includegraphics[width=0.40\textwidth]{hohlraum.jpg}
+	\end{center}
+	\caption{Schematic of ICF hohlraum (yellow), laser beams (blue) and capsule inside the hohlraum.}
+	\label{hohlraum}
+\end{wrapfigure}
+
+% TODO
+To motivate this proposal, consider the quantity of data generated
+by a large 3D HYDRA simulation.  A large simulation can:
+have
+	xx grid points,
+run on 
+	xx processors,
+consume 
+	xx TB of RAM and
+produce 
+	xx TB of binary data.  When examining the output of such a simulation, loading the
+just the computational mesh, at a single snapshot in time consumes
+	xx GB RAM\@.  For a sense of scale, Inca, which has the largest per-node RAM allocation 
+at Livermore Computing, has 48 GB\@.  Clearly, the output of our simulation codes has grown
+beyond our ability to load and manipulate on a single computer node.
+
 The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  
 It is a memory-contiguous sequence of data of uniform type.  It has the convenient property 
 of resembling both a linear algebra vector/matrix/tensor as well as a being a data structure
@@ -202,19 +240,6 @@ high-performance visualization.
 %___________________________________________________________________________
 
 \section*{Significance and Potential Impact}
-
-To appreciate the significance of this proposal, consider the quantity of data generate
-by HYDRA\@.  HYDRA is a massively parallel, 3 dimensional, radiation-hydrodynamics code, 
-whose the main application of is the simulation inertial confinement fusion
-experiments on the National Ignition Facility.  A large 3D HYDRA simulation can have
-	xx grid points, run on 
-	xx processors, consume 
-	xx TB of RAM and produce 
-	xx TB of binary data.  When examining the output of such a simulation, loading the
-just the computational mesh, at a single snapshot in time consumes
-	xx GB RAM\@.  For a sense of scale, Inca, which has the largest per-node RAM allocation 
-at Livermore Computing, has 48 GB\@.  Clearly, the output of our simulation codes has grown
-beyond our ability to load and manipulate on a single computer node.
 
 Because high-level languages lack a distributed nd-array, users must manually extract a subset
  of ``interesting'' data from a larger dataset that will fit in memory on a single node.  This extraction process typically manifests 
