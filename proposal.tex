@@ -7,6 +7,7 @@
 \usepackage{longtable,ltcaption,array}
 \usepackage{fullpage}
 \usepackage{multicol}
+\usepackage{graphicx}
 \newlength{\DUtablewidth} % internal use in tables
 
 %%% Custom LaTeX preamble
@@ -178,6 +179,14 @@ memory which they allocate.  This provides a large barrier to entry for pre-exis
 projects.  Additionally, the petsc4py interface is deemed too verbose for interactive use.
 % Target LLNL advanced sim codes
 
+\begin{figure}[<+htpb+>]
+	\begin{center}
+		\includegraphics[height=3.5in]{communication.jpg}
+	\end{center}
+	\caption{Communication diagram}
+	\label{fig:communication}
+\end{figure}
+
 Having developed a distributed array which is accessible from both low and high-level 
 languages we can address the processing of large data sets.  In particular, we seek 
 ease the burden of post-processing the output of large simulations. 
@@ -190,8 +199,6 @@ sophisticated many-to-many parallel compute architecture.  Finally, this data an
 platform must be capable of visualization.  Here, we will integrate with LLNL's own VisIt 
 project.  VisIt is used across many domains for dynamic, distributed, 
 high-performance visualization.
-
-% TODO: flow chart here
 
 % common data structures/algorithms should have a shared implementation.  Power in shared abstractions
 
