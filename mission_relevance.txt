@@ -10,4 +10,4 @@ Lawrence Livermore National Laboratory has a mission of strengthening the United
     And respond with vision, quality, integrity and technical excellence to scientific issues of national importance.
 
 
-
+One of the LLNL's core competencies is the use of large computer simulations to address scientific problems of national interest.  Current state-of-the-art simulations produce more data that a scientist can conveniently manipulate.  This effectively restricts the size of problems accessible to laboratory scientists and inhibits the productivity of those working on cutting edge massively-parallel simulations.  This project seeks to make processing large amounts of data substantially easier, thus improving scientific productivity and ensuring that LLNL scientist's interactive analytical capabilities keep up with our ever increasing parallel simulation abilities.
