@@ -149,11 +149,10 @@ The lack of a standard abstraction forces each project to write their own data s
 which are often incompatible with other implementations.  This significantly inhibits code
 and tool reuse and slows the evolution of scientific software.
 
-% TODO what does it mean to wrap? for non-comp folks
 In particular, the lack of a standard distributed array means that very high-level 
-languages have not wrapped such an object in a dynamic interface.  Thus, processing large 
-datasets is largely confined to special purpose software which is not available to all 
-computational scientists.
+languages have not taken such an object and provided a simplified, idiomatic interface.
+Thus, processing large datasets is largely confined to special purpose software which is 
+not available to all computational scientists.
 
 We propose the development of a distributed array package for Python that follows NumPy's 
 tradition of interoperability and adaptability.  Like NumPy's \texttt{ndarray}, this 
