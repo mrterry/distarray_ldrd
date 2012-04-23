@@ -1,2 +1,4 @@
 Expected Results (max 800 characters)
 If the project is successful, what results do you expect to achieve overall and what is their significance?
+
+The project will develop a interactive computing platform able to manipulate large, parallel datasets interactively.  The platform will allow scientists to interactively process large datasets.  The project will initially target HYDRA, whose main use is designing and simulating experiments for the National Ignition Facility.  The use of the tools developed in the project will make scientist more efficient, will allow to scientists to consider larger simulations and generally increase the pace of progress toward demonstrating the eponymous ignition at the National Ignition Facility.  While this project targets HYDRA output, all the infrastructure will be useful for any project working with large n-dimensional arrays.
