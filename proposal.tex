@@ -114,11 +114,13 @@ with the following capabilities:
 		Mathematica, MatLab, Yorick, Basis, etc.
 
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
+		
+	\item Interactively analyze large HYDRA simulations of NIF ignition experiments.
 \end{enumerate}
 
 The critical areas of research are identifying how general the array distribution can be 
 while maintaining acceptable performance and identifying how many details of the array 
-distribution to require the user to specify.  The initial application of this platform 
+distribution that the user is required to specify.  The initial application of this platform 
 will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics 
 code, but all of the infrastructure will be directly useful for of LLNL's structured mesh 
 (HYDRA, LASNEX\cite{Zimmerman1977}), automatic mesh refinement
@@ -133,15 +135,15 @@ SciPy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
 
 After 50 years of concerted effort, LLNL stands on the verge of demonstrating inertial 
 confinement fusion (ICF) ignition and energy gain on the National Ignition Facility\@.
-ICF involves compressing a spherical shell cryogenic Deuterium and Tritium ice (Hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with an inward radial
+ICF involves compressing a spherical shell cryogenic deuterium and tritium ice (hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with an inward radial
 velocity of 350 km/s, achieves densities greater than
 1,000 g/cm${}^3$ and temperatures in
 excess of 100,000,000 K.  The implosion is driven by high intensity laser beams heating 
-the inner surface of a Gold cylinder called a ``hohlraum.''  The hohlraum radiates x-rays 
+the inner surface of a gold cylinder called a ``hohlraum.''  The hohlraum radiates x-rays 
 which impinge on the shell and drive the implosion.  Figure~\ref{hohlraum} give a schematic.  Simulating such experiments requires accurate modeling of
 hydrodynamics, sophisticated (photon) radiation transport, thermal conduction, equations 
 of state spanning cryogenic to thermonuclear conditions, laser ray-trace and diffraction, fusion burn, and more.
-HYDRA is 3 dimensional, massively parallel, code developed in AX Division capable of describing all the mentioned physical processes.
+HYDRA is a three dimensional, massively parallel, code developed in AX Division capable of describing all the mentioned physical processes.
 It occupies a central role in designing NIF experiments and in interpreting the experimental data gathered.  
 
 \begin{wrapfigure}{r}{0.45\textwidth}
@@ -160,9 +162,9 @@ have
 run on 
 	4096 processors,
 consume 
-	4 TB of RAM, and
+	4 TeraBytes of RAM, and
 produce 
-	2.5 PB of binary data.
+	2.5 PetaBytes of binary data.
 %When examining the output of such a simulation, loading the
 %just the computational mesh, at a single snapshot in time consumes xx GB RAM\@.  
 This is 40,000 times more data than can be loaded on Livermore Computing's largest memory nodes (Inca with 48 GB of RAM).%  Just the computational mesh, at a single time snapshot requires 6 GB of RAM.
@@ -214,6 +216,19 @@ schemes.  It will be an area of research to establish the generality of distribu
 schemas we may support while maintaining acceptable performance.
 %  General purpose algorithms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
 
+\begin{wrapfigure}{l}{0.53\textwidth}
+	\vspace{-15pt}
+	\begin{center}
+%        \includegraphics[width=0.53\textwidth]{communication.jpg}
+		\includegraphics[width=0.50\textwidth]{flowchart.jpg}
+	\end{center}
+	\caption{Communication diagram illustrating user interaction with a single node
+		while computation and storge are distributed on the cluster.  VisIt also
+		uses the distributed array to interactively produce graphics.  }
+	\label{fig:communication}
+	\vspace{-10pt}
+\end{wrapfigure}
+
 To date, there are two projects that approach, in part, the functionality we desire: 
 petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}) 
 and GAiN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  
@@ -222,16 +237,6 @@ memory which they allocate.  This requirement amounts to an ``all or nothing'' c
 on using these libraries and is an unacceptably large barrier to entry for pre-existing 
 projects.  Additionally, the petsc4py interface is deemed too verbose for interactive use.
 
-\begin{wrapfigure}{l}{0.55\textwidth}
-	\vspace{-20pt}
-	\begin{center}
-		\includegraphics[width=0.53\textwidth]{communication.jpg}
-	\end{center}
-	\caption{Communication diagram illustrating user interaction with the shell
-	controlling operations involving the distributed array and VisIt graphics.}
-	\label{fig:communication}
-	\vspace{-10pt}
-\end{wrapfigure}
 
 Having developed a distributed array which is accessible from both low and high-level 
 languages we can address the processing of large data sets.  In particular, we seek 
@@ -265,13 +270,13 @@ associated with working with large datasets.  Though the individual components o
 proposal - distributed arrays, interactive interpreters, and parallel visualization - are 
 not novel concepts, coherently integrating them is.  This proposal represents a large 
 advance in the capabilities available to all scientists who must work with large data, 
-independent of their individual computational abilities.
+independent of their individual computational abilities, but especially those HYDRA users
+who are at the limits of their tools capability.  LLNL will benefit from the accelerated
+progress at NIF, one of its most important projects and arguable its most visible.
 
 There are three main thrusts of this proposal: a Python-wrapped distributed array, integration 
 of this distributed array with parallel compute architecture of IPython, and fully exposing 
-the distributed array data to VisIt.  
-
-The NumPy n-dimensional array is the bedrock on which the Python scientific computing stands.  
+the distributed array data to VisIt.  The NumPy n-dimensional array is the bedrock on which the Python scientific computing stands.  
 It provides a powerful and flexible high level (Python) interface, as well as a C-API that 
 allows it to easily interface with pre-existing code bases (LAPACK, etc).  The distributed 
 array aims to be for parallel datasets what the NumPy \texttt{ndarray} is for serial datasets.
@@ -280,8 +285,7 @@ data would represent a large jump in visualization capability.  VisIt users woul
 to invent quantities to visualize without the intermediate step of putting it in a binary 
 file or relying on VisIt to anticipate a particular transformation.
 
-It is important that 
-scientists have the tools to easily and efficiently understand the output of their
+It is important that scientists have the tools to easily and efficiently understand the output of their
 simulations.  While we are developing these technologies in the context of post-processing HYDRA output, 
 they will apply to most problems where a distributed array is the correct abstraction.  
 For example, this platform would be very easily adapted for use with the laboratory's large 
