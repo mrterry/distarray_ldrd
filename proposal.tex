@@ -110,8 +110,8 @@ with the following capabilities:
           the array is physically distributed.
 
 	\item A powerful, modern interactive shell with name completion, syntax highlighting, 
-		descriptive error messages, etc.  It will familiar to users of Mathematica, 
-		MatLab, Yorick, Basis, etc.
+		command history, descriptive error messages, etc.  It will familiar to users of 
+		Mathematica, MatLab, Yorick, Basis, etc.
 
 	\item Data sharing between the interpreted platform and high quality visualization tool VisIt.
 \end{enumerate}
@@ -122,8 +122,8 @@ distribution to require the user to specify.  The initial application of this pl
 will target processing of output from LLNL's HYDRA\cite{Marinak2001} radiation-hydrodynamics 
 code, but all of the infrastructure will be directly useful for of LLNL's structured mesh 
 (HYDRA, LASNEX\cite{Zimmerman1977}), automatic mesh refinement
-(Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}, ARES\cite{needed}),
-and unstructured mesh codes (KULL\cite{Rathkopf2000}).  The platform builds on the vibrant
+(Warp\cite{Grote2005}, FLASH\cite{flash}, ALE-AMR\cite{Koniges2010}, ARES),
+and unstructured mesh (KULL\cite{Rathkopf2000}) codes.  The platform builds on the vibrant
 Python scientific computing ecosystem, particularly the NumPy\cite{Oliphant2006}, 
 SciPy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
 
@@ -133,16 +133,16 @@ SciPy\cite{numpyscipy}, IPython\cite{ipython} and VisIt projects.
 
 After 50 years of concerted effort, LLNL stands on the verge of demonstrating inertial 
 confinement fusion (ICF) ignition and energy gain on the National Ignition Facility\@.
-ICF involves compressing a spherical shell cryogenic Deuterium and Tritium ice (Hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with a 
+ICF involves compressing a spherical shell cryogenic Deuterium and Tritium ice (Hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with an inward radial
 velocity of 350 km/s, achieves densities greater than
 xx g/cm${}^3$ and temperatures in
 excess of 100,000,000 K.  The implosion is driven by high intensity laser beams heating 
 the inner surface of a Gold cylinder called a ``hohlraum.''  The hohlraum radiates x-rays 
 which impinge on the shell and drive the implosion.  Figure~\ref{hohlraum} give a schematic.  Simulating such experiments requires accurate modeling of
-hydrodynamics, (photon) sophisticated radiation transport, thermal conduction, equations 
-of state spanning from cryogenic to thermonuclear, laser propagation, fusion burn, and more.
-In this, HYDRA occupies a central role in designing NIF experiments and in interpreting the experimental data gathered.  HYDRA is massively parallel, code developed in AX Division
-capable of describing all the mentioned physical processes in 3 dimensions.
+hydrodynamics, sophisticated (photon) radiation transport, thermal conduction, equations 
+of state spanning cryogenic to thermonuclear conditions, laser ray-trace and diffraction, fusion burn, and more.
+HYDRA is 3 dimensional, massively parallel, code developed in AX Division capable of describing all the mentioned physical processes.
+It occupies a central role in designing NIF experiments and in interpreting the experimental data gathered.  
 
 \begin{wrapfigure}{r}{0.45\textwidth}
 	\vspace{-25pt}
@@ -177,7 +177,8 @@ languages that have language-level support (MatLab\cite{matlab}, Yorick\cite{Mun
 or widely used libraries (Python\cite{CPython} via NumPy\cite{Oliphant2006}) for 
 manipulating nd-arrays.  The long-term popularity of Fortran for scientific computing is 
 due in part to its excellent support for nd-arrays.  These languages are useful across 
-many scientific domains because they leverage the mutual abstraction of the nd-array.
+many scientific domains because they leverage the mutual abstraction of the nd-array, however
+all of them are limited to using the memory on a single computer node.
 
 Programs written for distributed memory computers still leverage the nd-array, but scatter 
 the array memory across many machines (``distributed array'').  This allows for arrays 
@@ -196,8 +197,9 @@ not available to all computational scientists.
 We propose the development of a distributed array package for Python that follows NumPy's 
 tradition of interoperability and adaptability.  Like NumPy's \texttt{ndarray}, this 
 distributed array will be able wrap pre-existing distributed data structures and provide 
-an alternate interface without copying or substantially modifying the original program.  
-The distributed array will work with HDF5\cite{HDF5} and SILO data files.  Likewise, it 
+an alternate interface without copying data or substantially modifying the original program.  
+%The distributed array will work with HDF5\cite{HDF5} and SILO data files.
+Likewise, it 
 will be able to allocate and manage its own memory.  This flexibility requires a dynamic 
 representation of the how the array is distributed across the memory resources available.  
 Particularly, it should support the two most common distribution schemes: block structured 
@@ -209,9 +211,9 @@ schemes.  It will be an area of research to establish the generality of distribu
 schemas we may support while maintaining acceptable performance.
 %  General purpose algorithms, even with modest performances, can be very useful.  As Knuth is famously quoted, ``Premature optimization is the root of all evil.''\cite{Knuth1974}
 
-To date, there are two projects that approach in part the functionality we desire: 
+To date, there are two projects that approach, in part, the functionality we desire: 
 petsc4py\cite{petsc4py-web-page} (Python bindings for Petsc\cite{petsc-user-ref}) 
-and GAIN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  
+and GAiN\cite{global-arrays-python} (Python bindings for Global Arrays\cite{global-arrays}).  
 The main objection to both is that they each and insist that the program use the 
 memory which they allocate.  This requirement amounts to an ``all or nothing'' condition
 on using these libraries and is an unacceptably large barrier to entry for pre-existing 
@@ -276,7 +278,6 @@ data would represent a large jump in visualization capability.  VisIt users woul
 to invent quantities to visualize without the intermediate step of putting it in a binary 
 file or relying on VisIt to anticipate a particular transformation.
 
-% TODO
 It is important that 
 scientists have the tools to easily and efficiently understand the output of their
 simulations.  While we are developing these technologies in the context of post-processing HYDRA output, 
@@ -285,10 +286,6 @@ For example, this platform would be very easily adapted for use with the laborat
 design codes.
 
 % imagination, genomic datasets, lazy evaluation, fancy high level linear algebra
-
-% TODO management
-% TODO external sponsors
-% TODO dissemination
 
 %___________________________________________________________________________
 
@@ -380,7 +377,7 @@ and maintenance over to a community governance team in the model of NumPy, SciPy
 	0.1 FTE (FY2013 Only) &
 	Flash Center, \newline
 	University of Chicago &
-	Pytables (Python HDF5 bindings), FLASH, Nuclear fuel cycle, HEDP &
+	PyTables (Python HDF5 bindings), FLASH, Nuclear fuel cycle, HEDP &
 	distributed array, HDF5 interaction, FLASH interoperability \\
 	\hline
 
