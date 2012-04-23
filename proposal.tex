@@ -135,7 +135,7 @@ After 50 years of concerted effort, LLNL stands on the verge of demonstrating in
 confinement fusion (ICF) ignition and energy gain on the National Ignition Facility\@.
 ICF involves compressing a spherical shell cryogenic Deuterium and Tritium ice (Hydrogen isotopes) by a factor of approximately 35.  In this processes, the shell implodes with an inward radial
 velocity of 350 km/s, achieves densities greater than
-xx g/cm${}^3$ and temperatures in
+1,000 g/cm${}^3$ and temperatures in
 excess of 100,000,000 K.  The implosion is driven by high intensity laser beams heating 
 the inner surface of a Gold cylinder called a ``hohlraum.''  The hohlraum radiates x-rays 
 which impinge on the shell and drive the implosion.  Figure~\ref{hohlraum} give a schematic.  Simulating such experiments requires accurate modeling of
@@ -153,21 +153,24 @@ It occupies a central role in designing NIF experiments and in interpreting the 
 	\label{hohlraum}
 \end{wrapfigure}
 
-% TODO
 To motivate this proposal, consider the quantity of data generated
 by a large 3D HYDRA simulation.  A large simulation can:
 have
-	xx grid points,
+	264,000,000 zones,
 run on 
-	xx processors,
+	4096 processors,
 consume 
-	xx TB of RAM and
+	4 TB of RAM, and
 produce 
-	xx TB of binary data.  When examining the output of such a simulation, loading the
-just the computational mesh, at a single snapshot in time consumes
-	xx GB RAM\@.  For a sense of scale, Inca, which has the largest per-node RAM allocation 
-at Livermore Computing, has 48 GB\@.  Clearly, the output of our simulation codes has grown
+	2.5 PB of binary data.
+%When examining the output of such a simulation, loading the
+%just the computational mesh, at a single snapshot in time consumes xx GB RAM\@.  
+This is 40,000 times more data than can be loaded on Livermore Computing's largest memory nodes (Inca with 48 GB of RAM).%  Just the computational mesh, at a single time snapshot requires 6 GB of RAM.
+%For a sense of scale, Inca, which has the largest per-node RAM allocation at Livermore Computing, has 48 GB\@.  
+Clearly, the output of our simulation codes has grown
 beyond our ability to load and manipulate on a single computer node.
+Furthermore, the trend in computing has been for the creation of more data, not less.  We should
+expect our memory limitations to get worse over time, not better.
 
 The bedrock data structure in scientific computing is the n-dimensional array (nd-array).  
 It is a memory-contiguous sequence of data of uniform type.  It has the convenient property 
@@ -291,21 +294,19 @@ design codes.
 
 \section*{Plan of Work, Schedule and Budget}
 
-We propose the following tasks over a two year program:
+We propose the following tasks over a two year program (FTE estimates are two year aggregates):
 
 \begin{enumerate}
 	\item Develop a general purpose n-dimensional array and furnish with basic data 
 		re-distribution routines.  Establish performance boundaries and array distribution 
-		limitations. (Terry, Grote, Scopatz, 0.75 FTE) 
+		limitations. (Terry, Grote, Scopatz, 0.95 FTE) 
 
-	\item Python Bindings and integration within IPython (Terry, Grote 0.50 FTE)
+	\item Python Bindings and integration within IPython (Terry, Grote 0.23 FTE)
 
-		% TODO
-	\item Integration with HYDRA's output files (Terry xx FTE)
+	\item Integration with HYDRA's output files (Terry 0.23 FTE)
 
-		% TODO
 	\item Extensions to VisIt expose our distributed arrays and enable parallel visualization 
-		with VisIt. (Terry, Grote xx FTE)
+		with VisIt. (Terry, Grote 0.49 FTE)
 
 \end{enumerate}
 
@@ -314,11 +315,9 @@ We propose the following tasks over a two year program:
 	\setlength{\parskip}{0pt}
 	\setlength{\parsep}{0pt}
 
-	\item Funded effort = 600k
-		% TODO
-	\item Collaboration (unfunded) =
-	\item FY2013 request =  300k
-	\item FY2014 request =  300k
+	\item Funded effort = 1.1 (2013) / 0.8 (2014) FTE
+	\item FY2013 request =  \$300k
+	\item FY2014 request =  \$300k
 \end{itemize}
 
 %___________________________________________________________________________
