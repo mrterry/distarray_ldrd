@@ -1,2 +1,4 @@
 Proposed Work for FY2013 (max 800 characters)
 Summarize the work proposed and what results you expect to achieve. Please input ONLY the proposed work to be accomplished for FY2013. 
+
+For FY2013, the project will focus on developing the distributed array.  This will entail developing a flexible way of describing how memory is distributed among nodes and developing the communication infrastructure to appropriately gather and scatter operations.  In addition to instantiating distributed arrays, we will be able to load HYDRA binary data in parallel and perform basic slicing and mathematical operations.  We will have have rudimentary integration with an interactive Python shell.  At the end of FY2013, the project will be sufficiently mature to allow a small number of alpha users to begin experimenting with the platform.
